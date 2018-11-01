@@ -143,6 +143,5 @@ public class ClienteNewDTO implements Serializable {
 	public void setIdCidade(Integer idCidade) {
 		this.idCidade = idCidade;
 	}
-	
-	
+
 }
