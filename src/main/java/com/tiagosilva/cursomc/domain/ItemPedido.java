@@ -14,37 +14,43 @@ public class ItemPedido implements Serializable {
 	@JsonIgnore
 	@EmbeddedId
 	private ItemPedidoPK id = new ItemPedidoPK();
-	
+
 	private Double desconto;
-	private Integer quantitade;
+	private Integer quantidade;
 	private Double preco;
-	
-	public ItemPedido () {
-		
+
+	public ItemPedido() {
+
 	}
 
-	
 	public ItemPedido(Pedido pedido, Produto produto, Double desconto, Integer quanditade, Double preco) {
 		super();
 		id.setPedido(pedido);
 		id.setProduto(produto);
 		this.desconto = desconto;
-		this.quantitade = quanditade;
+		this.quantidade = quanditade;
 		this.preco = preco;
 	}
-	
+
 	public double getSubTotal() {
-		return (preco-desconto) * quantitade;
+		return (preco - desconto) * quantidade;
 	}
-	
+
 	@JsonIgnore
 	public Pedido getPedido() {
 		return id.getPedido();
 	}
-	
-	
+
+	public void setPedido(Pedido pedido) {
+		id.setPedido(pedido);
+	}
+
 	public Produto getProduto() {
 		return id.getProduto();
+	}
+
+	public void setProduto(Produto produto) {
+		id.setProduto(produto);
 	}
 
 	public ItemPedidoPK getId() {
@@ -63,12 +69,12 @@ public class ItemPedido implements Serializable {
 		this.desconto = desconto;
 	}
 
-	public Integer getQuanditade() {
-		return quantitade;
+	public Integer getQuantidade() {
+		return quantidade;
 	}
 
-	public void setQuanditade(Integer quanditade) {
-		this.quantitade = quanditade;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public Double getPreco() {
@@ -79,7 +85,6 @@ public class ItemPedido implements Serializable {
 		this.preco = preco;
 	}
 
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -87,7 +92,6 @@ public class ItemPedido implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -105,7 +109,5 @@ public class ItemPedido implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }
